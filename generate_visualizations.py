@@ -10,11 +10,13 @@ from sklearn.cluster import KMeans
 # Set style - SAMA PERSIS SEPERTI TA10.ipynb
 sns.set(style="whitegrid")
 
-# Create images directory if not exists
-os.makedirs('static/img', exist_ok=True)
+# Base path (script directory) and create images directory if not exists
+BASE_DIR = os.path.dirname(__file__)
+IMG_DIR = os.path.join(BASE_DIR, 'static', 'img')
+os.makedirs(IMG_DIR, exist_ok=True)
 
 # Load data - SAMA PERSIS SEPERTI TA10.ipynb
-csv_path = os.path.join(os.path.dirname(__file__), 'credit_risk_dataset.csv')
+csv_path = os.path.join(BASE_DIR, 'credit_risk_dataset.csv')
 df = pd.read_csv(csv_path)
 
 print("Shape:", df.shape)
@@ -68,7 +70,7 @@ plt.ylabel("WCSS / Inertia")
 plt.xticks(K_range)
 plt.grid(True)
 plt.tight_layout()
-plt.savefig('static/img/elbow_method.png', bbox_inches='tight')
+plt.savefig(os.path.join(IMG_DIR, 'elbow_method.png'), bbox_inches='tight')
 plt.close()
 print("✓ Saved: static/img/elbow_method.png")
 
@@ -93,7 +95,7 @@ plt.xlabel("PCA Component 1")
 plt.ylabel("PCA Component 2")
 plt.legend(title="Cluster")
 plt.tight_layout()
-plt.savefig('static/img/pca_clusters.png', bbox_inches='tight')
+plt.savefig(os.path.join(IMG_DIR, 'pca_clusters.png'), bbox_inches='tight')
 plt.close()
 print("✓ Saved: static/img/pca_clusters.png")
 
@@ -110,7 +112,7 @@ plt.title("Cluster Feature Means (Heatmap)")
 plt.ylabel("Features")
 plt.xlabel("Cluster")
 plt.tight_layout()
-plt.savefig('static/img/cluster_heatmap.png', bbox_inches='tight')
+plt.savefig(os.path.join(IMG_DIR, 'cluster_heatmap.png'), bbox_inches='tight')
 plt.close()
 print("✓ Saved: static/img/cluster_heatmap.png")
 
@@ -129,7 +131,7 @@ plt.xlabel("Cluster")
 plt.xticks(rotation=0)
 plt.legend(title="Feature")
 plt.tight_layout()
-plt.savefig('static/img/cluster_profiles.png', bbox_inches='tight')
+plt.savefig(os.path.join(IMG_DIR, 'cluster_profiles.png'), bbox_inches='tight')
 plt.close()
 print("✓ Saved: static/img/cluster_profiles.png")
 
