@@ -1,9 +1,2 @@
-[build]
-builder = "heroku/python"
-
-[env]
-FLASK_ENV = "production"
-SECRET_KEY = "change-me-in-production"
-
-[[services]]
-type = "web"
+## railway.toml intentionally cleared. Railway will auto-detect Python app.
+# If you need to provide variables, add them on Railway dashboard instead.
