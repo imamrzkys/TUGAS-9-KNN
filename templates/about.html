@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}Tentang - Kredit K-Means{% endblock %}
+
+{% block content %}
+<div style="padding-top: 80px; min-height: 100vh; background: white; padding-bottom: 40px;">
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+    
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 50px;">
+      <h1 style="font-size: clamp(28px, 6vw, 48px); font-weight: bold; color: #1f2937; margin-bottom: 15px;">
+        Tentang Kredit K-Means
+      </h1>
+      <p style="font-size: 16px; color: #6b7280; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+        Solusi teknologi Machine Learning untuk prediksi kelayakan kredit yang akurat dan transparan
+      </p>
+    </div>
+
+    <!-- Content Sections -->
+    <div style="display: flex; flex-direction: column; gap: 40px;">
+
+      <!-- Visi -->
+      <section style="background: #f3f4f6; padding: 30px; border-radius: 12px; border-left: 4px solid #1e40af;">
+        <h2 style="font-size: clamp(20px, 4vw, 28px); font-weight: bold; color: #1f2937; margin-bottom: 15px;">
+          Visi Kami
+        </h2>
+        <p style="font-size: 14px; color: #4b5563; line-height: 1.8; margin-bottom: 10px;">
+          Memberikan solusi teknologi terdepan untuk analisis kredit yang akurat, transparan, dan efisien. 
+          Kami percaya bahwa keputusan kredit harus didasarkan pada data dan algoritma yang telah terbukti, 
+          bukan hanya intuisi atau pengalaman subjektif.
+        </p>
+        <p style="font-size: 14px; color: #4b5563; line-height: 1.8;">
+          Dengan menggunakan Machine Learning, kami dapat mengidentifikasi pola dalam data historis 
+          yang membantu memprediksi risiko kredit dengan lebih akurat.
+        </p>
+      </section>
+
+      <!-- Teknologi -->
+      <section style="background: #f0f9ff; padding: 30px; border-radius: 12px; border-left: 4px solid #0284c7;">
+        <h2 style="font-size: clamp(20px, 4vw, 28px); font-weight: bold; color: #1f2937; margin-bottom: 15px;">
+          Teknologi yang Kami Gunakan
+        </h2>
+        <p style="font-size: 14px; color: #4b5563; line-height: 1.8; margin-bottom: 10px;">
+          <strong>KMeans Clustering:</strong> Algoritma unsupervised learning yang mengelompokkan peminjam 
+          berdasarkan kesamaan profil mereka.
+        </p>
+        <p style="font-size: 14px; color: #4b5563; line-height: 1.8; margin-bottom: 10px;">
+          <strong>Fitur yang Dianalisis:</strong> Usia, pendapatan, status kepemilikan rumah, durasi pekerjaan, 
+          tujuan pinjaman, grade pinjaman, jumlah pinjaman, suku bunga, rasio pinjaman terhadap pendapatan, 
+          riwayat default, dan durasi riwayat kredit.
+        </p>
+        <p style="font-size: 14px; color: #4b5563; line-height: 1.8;">
+          <strong>Proses Prediksi:</strong> Setiap peminjam baru dibandingkan dengan cluster yang ada 
+          menggunakan Euclidean distance untuk menemukan cluster paling mirip, kemudian approval rate 
+          dari cluster tersebut digunakan sebagai prediksi.
+        </p>
+      </section>
+
+      <!-- Dataset -->
+      <section style="background: #f0fdf4; padding: 30px; border-radius: 12px; border-left: 4px solid #22c55e;">
+        <h2 style="font-size: clamp(20px, 4vw, 28px); font-weight: bold; color: #1f2937; margin-bottom: 15px;">
+          Dataset dan Data
+        </h2>
+        <p style="font-size: 14px; color: #4b5563; line-height: 1.8; margin-bottom: 10px;">
+          Model kami dilatih pada dataset komprehensif dengan lebih dari 32,000 record peminjam historis.
+        </p>
+        <div style="background: white; padding: 15px; border-radius: 8px; margin: 15px 0;">
+          <p style="font-size: 13px; color: #374151; margin-bottom: 8px;"><strong>Statistik Dataset:</strong></p>
+          <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #4b5563;">
+            <li>Total Peminjam: 32,581</li>
+            <li>Peminjam Layak (Approved): 25,473 (78%)</li>
+            <li>Peminjam Macet (Defaulted): 7,108 (22%)</li>
+            <li>Jumlah Fitur: 13 (dikembangkan menjadi 22 setelah encoding)</li>
+            <li>Jumlah Cluster: 4</li>
+          </ul>
+        </div>
+        <p style="font-size: 14px; color: #4b5563; line-height: 1.8;">
+          Dataset mencakup informasi demografis, finansial, dan hasil default rate yang sebenarnya, 
+          memastikan prediksi kami berdasarkan pola nyata dari dunia industri keuangan.
+        </p>
+      </section>
+
+      <!-- Fitur Utama -->
+      <section style="background: #fdf2f8; padding: 30px; border-radius: 12px; border-left: 4px solid #ec4899;">
+        <h2 style="font-size: clamp(20px, 4vw, 28px); font-weight: bold; color: #1f2937; margin-bottom: 15px;">
+          Fitur Utama Sistem
+        </h2>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+          <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid #1e40af;">
+            <p style="font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 5px;">Prediksi Real-Time</p>
+            <p style="font-size: 12px; color: #6b7280;">Dapatkan hasil prediksi dalam hitungan detik berdasarkan profil peminjam</p>
+          </div>
+          <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid #1e40af;">
+            <p style="font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 5px;">Visualisasi Data</p>
+            <p style="font-size: 12px; color: #6b7280;">Lihat distribusi cluster dan analisis mendalam melalui chart interaktif</p>
+          </div>
+          <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid #1e40af;">
+            <p style="font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 5px;">Confidence Score</p>
+            <p style="font-size: 12px; color: #6b7280;">Setiap prediksi dilengkapi dengan confidence score untuk mengukur keandalan</p>
+          </div>
+          <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid #1e40af;">
+            <p style="font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 5px;">Interface Responsif</p>
+            <p style="font-size: 12px; color: #6b7280;">Bekerja sempurna di desktop, tablet, dan mobile device</p>
+          </div>
+          <div style="background: white; padding: 15px; border-radius: 8px; border-left: 3px solid #1e40af;">
+            <p style="font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 5px;">Rekomendasi Keputusan</p>
+            <p style="font-size: 12px; color: #6b7280;">Sistem memberikan rekomendasi: LAYAK, LAYAK DENGAN PERTIMBANGAN, atau TIDAK LAYAK</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Creator Info -->
+      <section style="background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%); color: white; padding: 30px; border-radius: 12px; text-align: center;">
+        <h2 style="font-size: clamp(18px, 4vw, 24px); font-weight: bold; margin-bottom: 15px;">
+          Tentang Pembuat
+        </h2>
+        <p style="font-size: 16px; font-weight: 600; margin-bottom: 5px;">Imam Rizky Syahputra</p>
+        <p style="font-size: 14px; margin-bottom: 15px;">Teknik Informatika</p>
+        <div style="display: flex; flex-direction: column; gap: 8px; align-items: center; font-size: 13px;">
+          <p>WhatsApp: <strong>083176235143</strong></p>
+          <p>Email: <strong>imamrizkysyahputra123@gmail.com</strong></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

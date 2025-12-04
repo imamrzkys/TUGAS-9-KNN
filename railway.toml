@@ -1,0 +1,9 @@
+[build]
+builder = "heroku/python"
+
+[env]
+FLASK_ENV = "production"
+SECRET_KEY = "change-me-in-production"
+
+[[services]]
+type = "web"

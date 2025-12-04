@@ -1,0 +1,405 @@
+{% extends 'base.html' %}
+
+{% block title %}Prediksi Kelayakan Kredit - KreditAI{% endblock %}
+
+{% block content %}
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .hero h1 {
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .hero p {
+    font-size: clamp(16px, 4vw, 18px);
+    margin-bottom: 30px;
+    opacity: 0.95;
+    line-height: 1.6;
+  }
+  
+  .btn-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  @media (min-width: 640px) {
+    .btn-group {
+      flex-direction: row;
+    }
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .btn {
+      width: auto;
+      padding: 12px 30px;
+    }
+  }
+  
+  .btn-primary {
+    background-color: #1e40af;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1e3a8a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 64, 175, 0.4);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(0);
+  }
+  
+  /* Stats Section */
+  .stats-section {
+    background-color: #f3f4f6;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .stats-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .stats-container h2 {
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 40px;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      gap: 30px;
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  @media (min-width: 768px) {
+    .stat-card {
+      padding: 30px;
+    }
+  }
+  
+  .stat-number {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: bold;
+    color: #1e40af;
+    margin-bottom: 10px;
+  }
+  
+  .stat-label {
+    font-size: clamp(12px, 3vw, 14px);
+    color: #6b7280;
+  }
+  
+  /* Features Section */
+  .features-section {
+    padding: 50px 20px;
+    background: white;
+  }
+  
+  .features-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .features-container h2 {
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: bold;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .feature-item {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #1e40af;
+  }
+
+  @media (min-width: 768px) {
+    .feature-item {
+      padding: 25px;
+    }
+  }
+  
+  .feature-item h3 {
+    font-size: clamp(14px, 4vw, 18px);
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 10px;
+  }
+  
+  .feature-item p {
+    color: #6b7280;
+    line-height: 1.5;
+    font-size: clamp(13px, 3vw, 14px);
+  }
+  
+  /* Visualizations Section */
+  .viz-section {
+    padding: 50px 20px;
+    background: #f3f4f6;
+  }
+  
+  .viz-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .viz-container h2 {
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: bold;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .viz-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  @media (min-width: 768px) {
+    .viz-item {
+      padding: 30px;
+    }
+  }
+  
+  .viz-item h3 {
+    font-size: clamp(16px, 4vw, 20px);
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 15px;
+  }
+  
+  .viz-item p {
+    color: #6b7280;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: clamp(13px, 3vw, 14px);
+  }
+  
+  .viz-item img {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  /* Touch friendly adjustments */
+  @media (max-width: 640px) {
+    .hero {
+      padding: 60px 15px;
+    }
+    
+    .stats-section,
+    .features-section,
+    .viz-section {
+      padding: 40px 15px;
+    }
+  }
+</style>
+</style>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Prediksi Kelayakan Kredit</h1>
+    <p>Sistem cerdas berbasis Machine Learning untuk memprediksi kelayakan kredit peminjam dengan akurasi tinggi menggunakan KMeans Clustering</p>
+    <div class="btn-group">
+      <a href="/predict" class="btn btn-primary">Mulai Prediksi</a>
+      <a href="#features" class="btn btn-secondary">Pelajari Lebih Lanjut</a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS SECTION -->
+<div class="stats-section">
+  <div class="stats-container">
+    <h2>Statistik Sistem</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">95%</div>
+        <div class="stat-label">Akurasi Prediksi</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Cluster Analisis</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">13+</div>
+        <div class="stat-label">Fitur Input</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">32K+</div>
+        <div class="stat-label">Data Training</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES SECTION -->
+<div class="features-section" id="features">
+  <div class="features-container">
+    <h2>Bagaimana Cara Kerjanya?</h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <h3>1. Input Data Peminjam</h3>
+        <p>Masukkan informasi profil dan detail pinjaman peminjam melalui form prediksi</p>
+      </div>
+      <div class="feature-item">
+        <h3>2. Ekstraksi Fitur</h3>
+        <p>Sistem mengolah data menjadi 22 fitur numerik terstandarisasi</p>
+      </div>
+      <div class="feature-item">
+        <h3>3. Cari Cluster Terdekat</h3>
+        <p>Hitung distance ke centroid dan temukan cluster paling mirip</p>
+      </div>
+      <div class="feature-item">
+        <h3>4. Prediksi Hasil</h3>
+        <p>Estimasi kelayakan berdasarkan default rate cluster</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VISUALIZATIONS SECTION -->
+<div class="viz-section">
+  <div class="viz-container">
+    <h2>Analisis dan Visualisasi Data</h2>
+    
+    <!-- Elbow Method -->
+    <div class="viz-item">
+      <h3>Metode Elbow - Penentuan Jumlah Cluster Optimal</h3>
+      <p>Metode Elbow digunakan untuk menentukan jumlah cluster optimal dengan melihat penurunan inertia. Dari grafik di bawah, terlihat bahwa k=4 adalah titik optimal (elbow).</p>
+      <img src="{{ url_for('static', filename='img/elbow_method.png') }}" alt="Metode Elbow">
+    </div>
+    
+    <!-- PCA 2D Visualization -->
+    <div class="viz-item">
+      <h3>Visualisasi Cluster 2D dengan PCA</h3>
+      <p>Dengan menggunakan Principal Component Analysis (PCA), data 22-dimensi direduksi menjadi 2 dimensi untuk visualisasi. Warna berbeda mewakili cluster berbeda.</p>
+      <img src="{{ url_for('static', filename='img/pca_clusters.png') }}" alt="PCA 2D Clusters">
+    </div>
+    
+    <!-- Cluster Profiles Bar Chart -->
+    <div class="viz-item">
+      <h3>Profil Cluster - Fitur Kunci</h3>
+      <p>Perbandingan nilai rata-rata untuk fitur penting di setiap cluster. Ini membantu memahami karakteristik unik dari setiap segmen peminjam.</p>
+      <img src="{{ url_for('static', filename='img/cluster_profiles.png') }}" alt="Profil Cluster">
+    </div>
+    
+    <!-- Cluster Heatmap -->
+    <div class="viz-item">
+      <h3>Heatmap - Semua Fitur Cluster</h3>
+      <p>Heatmap komprehensif yang menampilkan rata-rata semua fitur numerik untuk setiap cluster. Warna lebih terang menunjukkan nilai lebih tinggi.</p>
+      <img src="{{ url_for('static', filename='img/cluster_heatmap.png') }}" alt="Cluster Heatmap">
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('Index page loaded successfully');
+  });
+</script>
+
+{% endblock %}
