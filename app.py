@@ -7,6 +7,8 @@ from datetime import datetime
 from dotenv import load_dotenv
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+import subprocess
+import sys
 
 load_dotenv()
 
@@ -93,6 +95,36 @@ def load_credit_models():
 
 # Load models on startup
 load_credit_models()
+
+# Ensure visualizations exist (generate on server if missing)
+def ensure_visualizations():
+    """Generate visualization images by running `generate_visualizations.py`
+    if any expected image is missing. This helps when images are not checked
+    into the repo (we intentionally ignore `static/img` locally).
+    """
+    img_dir = os.path.join(os.path.dirname(__file__), 'static', 'img')
+    expected_files = [
+        os.path.join(img_dir, 'elbow_method.png'),
+        os.path.join(img_dir, 'pca_clusters.png'),
+        os.path.join(img_dir, 'cluster_heatmap.png'),
+        os.path.join(img_dir, 'cluster_profiles.png'),
+    ]
+
+    missing = [p for p in expected_files if not os.path.exists(p)]
+    if missing:
+        try:
+            script_path = os.path.join(os.path.dirname(__file__), 'generate_visualizations.py')
+            if os.path.exists(script_path):
+                # Run the generator with the same Python interpreter
+                subprocess.run([sys.executable, script_path], check=False)
+                print("✓ generate_visualizations.py executed (missing images regenerated)")
+            else:
+                print(f"! generate_visualizations.py not found at {script_path}")
+        except Exception as e:
+            print(f"Error generating visualizations: {e}")
+
+# Try to ensure visuals now (will run on import when Gunicorn loads the module)
+ensure_visualizations()
 
 # In-memory storage untuk demo
 contacts = []
